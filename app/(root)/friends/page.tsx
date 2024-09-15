@@ -16,7 +16,27 @@ const FriendsPage = (props: Props) => {
     return (
         <>
             <ItemList title="Friends" Action={<AddFriendDialog />}>
-                {requests ? requests.length === 0 ? <p className="w-full h-full flex items-center justify-center">No friend requests found</p> : requests.map(request => {return <Request key={request.request._id} id={request.request._id} imageUrl={request.sender.imageUrl} username={request.sender.username} email={request.sender.email}/>}) null : <Loader2 className="h-8 w-8" />}
+                {requests ? (
+                    requests.length === 0 ? (
+                        <p className="w-full h-full flex items-center justify-center">
+                            No friend requests found
+                        </p>
+                    ) : (
+                        requests.map((request) => {
+                            return (
+                                <Request
+                                    key={request.request._id}
+                                    id={request.request._id}
+                                    imageUrl={request.sender.imageUrl}
+                                    username={request.sender.username}
+                                    email={request.sender.email}
+                                />
+                            );
+                        })
+                    )
+                ) : (
+                    <Loader2 className="h-8 w-8" />
+                )}
             </ItemList>
             <ConversationFallback />
         </>
