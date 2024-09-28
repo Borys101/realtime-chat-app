@@ -8,17 +8,15 @@ import React from "react";
 
 type Props = {
     id: Id<"conversations">;
-    imageUrl: string;
-    username: string;
+    name: string;
     lastMessageSender?: string;
     lastMessageContent?: string;
     unseenCount: number;
 };
 
-const DMConversationItem = ({
+const GroupConversationItem = ({
     id,
-    imageUrl,
-    username,
+    name,
     lastMessageSender,
     lastMessageContent,
     unseenCount,
@@ -28,13 +26,12 @@ const DMConversationItem = ({
             <Card className="p-2 flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-4 truncate">
                     <Avatar>
-                        <AvatarImage src={imageUrl} />
                         <AvatarFallback>
-                            <User />
+                            {name.charAt(0).toLocaleUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col truncate">
-                        <h4 className="truncate">{username}</h4>
+                        <h4 className="truncate">{name}</h4>
                         {lastMessageSender && lastMessageContent ? (
                             <span className="text-sm text-muted-foreground flex truncate overflow-ellipsis">
                                 <p className="font-semibold">
@@ -58,4 +55,4 @@ const DMConversationItem = ({
     );
 };
 
-export default DMConversationItem;
+export default GroupConversationItem;
