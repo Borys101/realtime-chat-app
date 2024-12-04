@@ -29,7 +29,7 @@ export const get = query({
             .withIndex("by_user2", (q) => q.eq("user2", currentUser._id))
             .collect();
 
-        const friendships = { ...friendships1, ...friendships2 };
+        const friendships = [...friendships1, ...friendships2];
 
         const friends = await Promise.all(
             friendships.map(async (friendship) => {
@@ -46,7 +46,6 @@ export const get = query({
                 return friend;
             })
         );
-
         return friends;
     },
 });

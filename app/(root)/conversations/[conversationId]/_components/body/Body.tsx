@@ -33,7 +33,7 @@ const Body = ({ members }: Props) => {
         if (messages && messages.length > 0) {
             markRead({
                 conversationId,
-                messagId: messages[0].message._id,
+                messageId: messages[0].message._id,
             });
         }
     }, [messages?.length, conversationId, messages, markRead]);
